@@ -1,6 +1,12 @@
 from flask import Flask, render_template
 import sqlite3
 
+import os
+
+# Ensure database exists when app starts
+if not os.path.exists("expenses.db"):
+    import init_db
+
 app = Flask(__name__)
 
 @app.route("/")
