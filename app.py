@@ -1,0 +1,17 @@
+from flask import Flask, render_template
+import sqlite3
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    # Connect to DB and fetch summary
+    conn = sqlite3.connect("expenses.db")
+    cur = conn.cursor()
+    cur.execute("SELECT category, SUM(amount) FROM transactions GROUP BY category")
+    data = cur.fetchall()
+    conn.close()
+    return render_template("index.html", data=data)
+
+if __name__ == "__main__":
+    app.run(debug=True)
