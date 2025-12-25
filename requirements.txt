@@ -1,5 +1,6 @@
 flask
 pandas
+pdfplumber
 openpyxl
 camelot-py
 PyPDF2
